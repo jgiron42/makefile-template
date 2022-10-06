@@ -1,10 +1,12 @@
-NAME ?= $(lastword $(dir $(shell pwd)))
+NAME ?= $(shell basename $$(pwd))
 
 SRCS_DIR ?= .
 
 OBJS_DIR ?= obj
 
 INCLUDE_DIR ?= .
+
+SRCS ?= $(wildcard *.c) $(wildcard *.cpp)
 
 OBJS_DIR_TREE := $(sort $(addprefix ${OBJS_DIR}/, $(dir ${SRCS})))
 
