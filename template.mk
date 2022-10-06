@@ -1,8 +1,8 @@
-SRCS_DIR := src
+SRCS_DIR ?= src
 
-OBJS_DIR := obj
+OBJS_DIR ?= obj
 
-INCLUDE_DIR := includes
+INCLUDE_DIR ?= includes
 
 OBJS_DIR_TREE := $(sort $(addprefix ${OBJS_DIR}/, $(dir ${SRCS})))
 
@@ -14,7 +14,7 @@ OBJS := $(SRCS:%.c=${OBJS_DIR}/%.o)
 
 IDEPS := $(SRCS:%.c=${OBJS_DIR}/%.d)
 
-CFLAGS := -Wall -Werror -Wextra
+CFLAGS ?= -Wall -Werror -Wextra
 
 all: $(NAME)
 
