@@ -18,21 +18,19 @@ CFLAGS ?= -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME): ${OBJS_DIR} ${OBJS_DIR_TREE} $(OBJS) $(MAKE_DEP)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIB_ARG)
+$(NAME): ${OBJS_DIR} ${OBJS_DIR_TREE} $(OBJS)
+		ar rc $(NAME) $(OBJS)
+		ranlib $(NAME)
 
 ${OBJS_DIR}:
 	mkdir -p $@
-	[ -f .gitignore ] && (grep '^'"$@"'$$' .gitignore || echo "$@" >> .gitignore) || true
+	[ -f .gitignore ] && (grep '^'"$@"'$$' .gitignore 2>&1 >/dev/null || echo "$@" >> .gitignore) || true
 
 ${OBJS_DIR_TREE}:
 	mkdir -p $@
 
 ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
 	$(CC) $(CFLAGS) ${INCLUDE_ARG} -MMD -c $< -o $@
-
-$(MAKE_DEP):
-	make -C $(dir $@) $(notdir $@)
 
 clean:
 	rm -rf $(OBJS_DIR)
