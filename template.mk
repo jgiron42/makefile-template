@@ -1,8 +1,10 @@
-SRCS_DIR ?= src
+NAME ?= $(lastword $(dir $(shell pwd)))
+
+SRCS_DIR ?= .
 
 OBJS_DIR ?= obj
 
-INCLUDE_DIR ?= includes
+INCLUDE_DIR ?= .
 
 OBJS_DIR_TREE := $(sort $(addprefix ${OBJS_DIR}/, $(dir ${SRCS})))
 
