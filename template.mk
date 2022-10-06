@@ -18,7 +18,7 @@ CFLAGS ?= -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME): ${OBJS_DIR} $(OBJS) $(MAKE_DEP)
+$(NAME): ${OBJS_DIR_TREE} $(OBJS) $(MAKE_DEP)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIB_ARG)
 
 ${OBJS_DIR}: ${OBJS_DIR_TREE}
